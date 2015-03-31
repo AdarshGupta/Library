@@ -1,0 +1,59 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.adarshgupta.library.Ebooks1Activity">
+
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar" />
+
+
+    <TextView
+        android:id="@+id/main_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_bar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/textview2"
+        android:textSize="24dp" />
+    <!-- Displays keyboard when touched -->
+    <EditText
+        android:id="@+id/main_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/main_textview"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
+        android:hint="@string/hint" />
+    <!--android:layout_below="@+id/main_textview"-->
+
+
+    <!--&lt;!&ndash; This nested layout contains views of its own &ndash;&gt;-->
+    <!--<LinearLayout-->
+    <!--android:id="@+id/main_linear"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="horizontal">-->
+    <!--&lt;!&ndash; Set OnClickListener to trigger results when pressed &ndash;&gt;-->
+
+    <!--</LinearLayout>-->
+    <!--&lt;!&ndash; android:layout_below="@+id/main_edittext"&ndash;&gt;-->
+
+    <Button
+        android:id="@+id/main_button"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/main_edittext"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
+        android:text="@string/button" />
+    <!--android:layout_below="@+id/main_edittext"-->
+
+
+    <!-- List whose dataset is defined in code with an adapter -->
+
+
+</RelativeLayout>

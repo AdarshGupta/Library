@@ -1,0 +1,30 @@
+<resources>
+    <string name="title_activity_main">Library</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="app_name">Library</string>
+    <string name="next">NEXT</string>
+    <!--<string name="title_activity_sub">Ebooks</string>-->
+    <string name="title_activity_research1">Research Papers</string>
+    <string name="title_activity_journals1">Journals</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string name="textview1">Search For Books!</string>
+    <string name="textview2">Search For Ebooks!</string>
+    <string name="textview3">Search For Research Papers!</string>
+    <string name="textview4">Search For Journals!</string>
+    <string name="textview5">Search For Magazines!</string>
+    <string name="button">Search</string>
+    <string name="hint" >    Title    and / or   Author</string>
+    <string name="activity_details">Book Details</string>
+    <string name="desc">Cover Page</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello World!!</string>
+    <string name="title_activity_ebooks1">Ebooks</string>
+    <string name="title_activity_magazines1">Magazines</string>
+
+
+</resources>

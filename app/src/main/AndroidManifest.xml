@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.adarshgupta.library" >
+
+    <!-- NEED TO ADD TO BE ABLE TO GO ONLINE AND GET DATA -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main"
+            android:launchMode="singleTop" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".DetailActivity"
+            android:label="@string/activity_details"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".Ebooks1Activity"
+            android:label="@string/title_activity_ebooks1"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.adarshgupta.library.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Journals1Activity"
+            android:label="@string/title_activity_journals1"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.adarshgupta.library.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Research1Activity"
+            android:label="@string/title_activity_research1"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.adarshgupta.library.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Magazines1Activity"
+            android:label="@string/title_activity_magazines1"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.adarshgupta.library.MainActivity" />
+        </activity>
+    </application>
+
+</manifest>

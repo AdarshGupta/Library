@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp">
+
+
+
+
+    <ImageView
+        android:id="@+id/img_thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="180dp"
+        android:layout_marginLeft="25dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_number2"/>
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="36dp"
+        android:layout_toRightOf="@+id/img_thumbnail"
+        android:layout_alignTop="@+id/img_thumbnail"
+        android:text="Text Title"
+        android:padding="5dp"
+        android:textSize="36dp"/>
+
+    <TextView
+        android:id="@+id/text_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_title"
+        android:layout_alignLeft="@+id/text_title"
+        android:text="Author"
+        android:padding="10dp"
+        android:textSize="33dp"/>
+    <TextView
+        android:id="@+id/text_publish_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_author"
+        android:layout_alignLeft="@+id/text_title"
+        android:text="Publish Date"
+        android:padding="10dp"
+        android:textSize="30dp"/>
+
+    <TextView
+        android:id="@+id/text_subject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subject"
+        android:padding="20dp"
+        android:textSize="33dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="76dp" />
+    <TextView
+        android:id="@+id/text_language"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Language"
+        android:padding="20dp"
+        android:textSize="25dp"
+        android:layout_alignBottom="@+id/text_publish_date"
+        android:layout_alignStart="@+id/text_subject" />
+
+</RelativeLayout>

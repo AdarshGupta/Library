@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+<!--size not decided-->
+    <ImageView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/img_cover"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_margin="25dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_number2"
+        android:contentDescription="@string/desc"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:padding="5dp"
+        android:layout_below="@+id/img_cover"
+        android:text="Dummy title" />
+
+    <TextView
+        android:id="@+id/author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_alignLeft="@+id/title"
+        android:padding="5dp"
+        android:text="Dummy Author" />
+
+    <TextView
+        android:id="@+id/publish_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/title"
+        android:padding="5dp"
+        android:layout_below="@+id/author"
+        android:text="Publish Date" />
+
+    <TextView
+        android:id="@+id/subject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:padding="5dp"
+        android:layout_below="@+id/publish_date"
+        android:text="Subject" />
+
+    <TextView
+        android:id="@+id/publish_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:padding="5dp"
+        android:layout_below="@+id/subject"
+        android:text="Publish Place" />
+
+    <TextView
+        android:id="@+id/language"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:padding="5dp"
+        android:layout_below="@+id/publish_place"
+        android:text="Language" />
+
+    <TextView
+        android:id="@+id/person"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:padding="5dp"
+        android:layout_below="@+id/language"
+        android:text="Actors/Actresses" />
+
+    <TextView
+        android:id="@+id/isbn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:padding="5dp"
+        android:layout_below="@+id/person"
+        android:text="ISBN No." />
+
+
+</RelativeLayout>

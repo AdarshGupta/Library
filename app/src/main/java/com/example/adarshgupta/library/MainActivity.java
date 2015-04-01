@@ -179,20 +179,25 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-                        //  Take what was typed into the EditText and use in search
-                queryBooks(mainEditText.getText().toString());
+                        if(v.getId()==R.id.main_button) {
+            //  Take what was typed into the EditText and use in search
+            queryBooks(mainEditText.getText().toString());
+        }
 
-        if (v.getTag().equals(TAG_SORT_NAME)) {
+      else if (v.getTag().equals(TAG_SORT_NAME)) {
             //call the sort by name method
             Toast.makeText(this,"List sorted alphabetically.Feature under development",Toast.LENGTH_LONG).show();
 
         }
-        if (v.getTag().equals(TAG_REQUEST)) {
+     else if (v.getTag().equals(TAG_REQUEST)) {
             Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                     "mailto", "adarsh035@gmail.com", null));
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Request for a book/journal/research paper/magazines/ebook");
             startActivity(Intent.createChooser(emailIntent, "Send email..."));
 
+        }
+        else{
+            queryBooks(mainEditText.getText().toString());
         }
 
 

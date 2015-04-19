@@ -1,9 +1,13 @@
 package com.example.adarshgupta.library;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.SearchRecentSuggestions;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -43,13 +47,16 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     Button mainButton;
     ArrayAdapter mArrayAdapter;
     private static final String TAG_SORT_NAME = "sortName";
-    //tag associated with the FAB menu button that sorts by date
+    //tag associated with the FAB menu button that sorts by name
     private static final String TAG_REQUEST = "request";
-    //tag associated with the FAB menu button that sorts by ratings
+    //tag associated with the FAB menu button that requests developer for a book
 
- //   ArrayList mNameList = new ArrayList();
- ProgressDialog mDialog;
+
+    ProgressDialog mDialog;
     public int pane=0;
+
+    NetworkInfo activeNetworkInfo;
+    ConnectivityManager connectivityManager;
 
 
 
@@ -85,22 +92,32 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         // the EditText defined in layout XML
         mainEditText = (EditText) findViewById(R.id.main_edittext);
+        //trial
+        SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
+                SearchsuggestionProvider.AUTHORITY,
+                SearchsuggestionProvider.MODE);
+
+        suggestions.saveRecentQuery(String.valueOf(mainEditText),null);
+        //trial
+
+
+
 
         //  the ListView
         mainListView = (ListView) findViewById(R.id.main_listview);
 
 
 
-        // Set the ListView to use the ArrayAdapter
+        // Sets the ListView to use the ArrayAdapter
         mainListView.setAdapter(mArrayAdapter);
 
-        //  Set this activity to react to list items being pressed
+        //  Sets this activity to react to list items being pressed
         mainListView.setOnItemClickListener(this);
 
-        // Create a JSONAdapter for the ListView
+        // Creates a JSONAdapter for the ListView
         mJSONAdapter = new JSONAdapter(this, getLayoutInflater());
 
-// Set the ListView to use the ArrayAdapter
+// Sets the ListView to use the ArrayAdapter
         mainListView.setAdapter(mJSONAdapter);
 
 
@@ -149,6 +166,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         button1.setOnClickListener(this);
         button2.setOnClickListener(this);
 
+         connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
     }
 
@@ -163,8 +182,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // automatically handle clicks on the Home/Up button,
+        // as i've specified a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -179,19 +198,35 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-                        //  Take what was typed into the EditText and use in search
-                queryBooks(mainEditText.getText().toString());
+        if(v.getId()==R.id.main_button) {
 
-        if (v.getTag().equals(TAG_SORT_NAME)) {
-            //call the sort by name method
+
+            activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            if(activeNetworkInfo != null && activeNetworkInfo.isConnected()){
+                    queryBooks(mainEditText.getText().toString());
+                }
+                else
+                    Toast.makeText(this,"Please connect to the internet!",Toast.LENGTH_LONG).show();
+
+            //  Take what was typed into the EditText and use in search
+
+
+        }
+
+      else if (v.getTag().equals(TAG_SORT_NAME)) {
+            //calls the sort by name method
             Toast.makeText(this,"List sorted alphabetically.Feature under development",Toast.LENGTH_LONG).show();
 
         }
-        if (v.getTag().equals(TAG_REQUEST)) {
+     else if (v.getTag().equals(TAG_REQUEST)) {
             Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                     "mailto", "adarsh035@gmail.com", null));
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Request for a book/journal/research paper/magazines/ebook");
             startActivity(Intent.createChooser(emailIntent, "Send email..."));
+
+        }
+        else{
+            queryBooks(mainEditText.getText().toString());
 
         }
 
@@ -203,7 +238,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     //connection
     private void queryBooks(String searchString) {
 
-        // Prepare search string to be put in a URL
+        // Prepares search string to be put in a URL
         // It might have reserved characters or something
         String urlString = "";
         try {
@@ -216,9 +251,9 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
-        // Create a client to perform networking
+        // Creates a client to perform networking
         AsyncHttpClient client = new AsyncHttpClient();
-        // Show ProgressDialog to inform user that a task in the background is occurring
+        // Shows ProgressDialog to inform user that a task in the background is occurring
         mDialog = new ProgressDialog(this);
         mDialog.setMessage("Searching for Book");
         mDialog.setCancelable(true);
@@ -226,14 +261,14 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         client.setTimeout(10000);
 
 
-        // Have the client get a JSONArray of data
-        // and define how to respond
+        //  gets a JSONArray of data
+        // and defines how to respond
         client.get(QUERY_URL + urlString,
                 new JsonHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                         super.onSuccess(statusCode, headers, response);
-                        //  Dismiss the ProgressDialog
+                        //  Dismisses the ProgressDialog
                         mDialog.dismiss();
                         Toast.makeText(getApplicationContext(), "Success!"+response, Toast.LENGTH_LONG).show();
 
@@ -255,7 +290,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        //  Now that the user's chosen a book, grab the cover data
+        //  Now that the user's chosen a book, grab the data
         JSONObject jsonObject = (JSONObject) mJSONAdapter.getItem(position);
         String coverID = jsonObject.optString("cover_i","");
         String title = jsonObject.optString("title","");
@@ -267,10 +302,10 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         String person = jsonObject.optString("person","");
         String isbn = jsonObject.optString("isbn","");
 
-        // create an Intent to take you over to a new DetailActivity
+        //  an Intent to take you over to a new DetailActivity
         Intent detailIntent = new Intent(this, DetailActivity.class);
-        // pack away the data about the cover
-// into your Intent before you head out
+
+// into the Intent before you head out
         detailIntent.putExtra("coverID", coverID)
                 .putExtra("title",title)
                 .putExtra("author_name",author)
@@ -280,7 +315,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 .putExtra("language",language)
                 .putExtra("person",person)
                 .putExtra("isbn",isbn);
-        // start the next Activity using your prepared Intent
+        // starts the next Activity using prepared Intent
         startActivity(detailIntent);
     }
 }

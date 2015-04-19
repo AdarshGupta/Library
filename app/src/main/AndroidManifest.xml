@@ -4,6 +4,7 @@
 
     <!-- NEED TO ADD TO BE ABLE TO GO ONLINE AND GET DATA -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -60,6 +61,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.adarshgupta.library.MainActivity" />
         </activity>
+
+        <provider
+
+        android:authorities="com.example.adarshgupta.library.SearchsuggestionProvider"
+
+        android:name=".SearchsuggestionProvider" >
+
+    </provider>
     </application>
 
 </manifest>

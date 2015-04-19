@@ -35,7 +35,9 @@
             android:hint="@string/hint"
             android:layout_below="@+id/main_textview"
             android:layout_marginTop="48dp"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:searchSuggestAuthority = "com.example.adarshgupta.library.SearchsuggestionProvider"
+            android:searchSuggestSelection = " ?"/>
         <!--android:layout_below="@+id/main_textview"-->
 
 
